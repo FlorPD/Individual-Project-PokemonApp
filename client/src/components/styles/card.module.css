@@ -1,0 +1,20 @@
+.card {
+    border: solid 3px transparent;
+    border-radius: 10px;
+    width: 20vw;
+    padding: 15px;
+    display:flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    justify-content: space-around;
+    background-color: #e5e5e5;
+    margin: 25px;
+    box-shadow: 1px 2px 3px 4px rgba(20,20,20,0.4);
+    opacity: 0.9;
+}
+.card:hover{
+    background-color: #2c4592;
+    color: #e5e5e5;
+    border: 2px solid transparent;
+    border-style: groove;
+}
