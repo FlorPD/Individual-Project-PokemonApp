@@ -1,12 +1,11 @@
 // FORMULARIO CONTROLADO : Los valores de los inputs estan asociados al estado del componente. Puedo ir avisando mientra se completa si hay un error
-
-
 import React from 'react';
 import { useState, useEffect } from 'react'; 
 import { NavLink, useNavigate } from 'react-router-dom';
 import { getPokemonType, postPokemon } from '../actions';
 import { useDispatch, useSelector } from 'react-redux';
-// // import styles from '../components/styles/recipecreator.module.css';
+import styles from "./styles/pokemoncreator.module.css"
+
 
 function validate(input) {
     let err = {};
@@ -41,7 +40,9 @@ function validate(input) {
 export default function PokemonCreator() {
     const dispatch = useDispatch();
     const navigate = useNavigate();
+    
     const types = useSelector((state) => state.types)   // ME TRAIGO EL ESTADO DE LOS TYPES
+    console.log(types)
     
     
     const [err, setErr] = useState("");   // FORMULARIO CONTROLADO
@@ -109,19 +110,22 @@ export default function PokemonCreator() {
         })
         navigate('/home')  // redirigir a home cuando el usuario haga el submit   
     }
-    useEffect(() => { dispatch(getPokemonType()) }, [dispatch]); // me traigo los tipos de pokemones
+    useEffect(() => { dispatch(getPokemonType()) }, [dispatch]); // cuand ome traigo los tipos de pokemones
 
     return (
-      // renderizo el form
-      <div>
+      <div className={styles.container}>
         <NavLink to="/home">
-          <button>Back</button>
+          <button className={styles.button}>Back to home</button>
         </NavLink>
-        <h1>Create your Pokemon</h1>
-        <form onSubmit={(e) => handleSubmit(e)}>
+
+        <h1 className={styles.title}>Create your Pokemon</h1>
+
+        <form className={styles.form} onSubmit={(e) => handleSubmit(e)}>
           <div>
-            <label>* Name: </label>
+            <div className={styles.line}>
+            <label className={styles.label}>* Name: </label>
             <input
+              className={styles.input}
               required
               autoComplete='off'
               type="text"
@@ -129,77 +133,97 @@ export default function PokemonCreator() {
               name="name"
               onChange={(e) => handleChange(e)}
             />
+            </div>
             {/* si esta el error, renderiza un p con ese error */}
-            {err.name && <p>{err.name}</p>}
+            {err.name && <p className={styles.error}>{err.name}</p>}
           </div>
           <div>
-            <label>Height: </label>
+          <div className={styles.line}>
+            <label className={styles.label}>Height: </label>
             <input
+              className={styles.input}
               type="number"
               value={input.height}
               name="height"
               onChange={(e) => handleChange(e)}
             />
-            {err.height && <p>{err.height}</p>}
+            </div>
+            {err.height && <p className={styles.error}>{err.height}</p>}
           </div>
           <div>
-            <label>Weight: </label>
+          <div className={styles.line}>
+            <label className={styles.label}>Weight: </label>
             <input
+              className={styles.input}
               type="number"
               value={input.weight}
               name="weight"
               onChange={(e) => handleChange(e)}
             />
-            {err.weight && <p>{err.weight}</p>}
+            </div>
+            {err.weight && <p className={styles.error}>{err.weight}</p>}
 
           </div>
           <div>
-            <label>Hp: </label>
+          <div className={styles.line}>
+            <label className={styles.label} >Hp: </label>
             <input
+             className={styles.input}
               type="number"
               value={input.hp}
               name="hp"
               onChange={(e) => handleChange(e)}
             />
-            {err.hp && <p>{err.hp}</p>}
+            </div>
+            {err.hp && <p className={styles.error}>{err.hp}</p>}
 
           </div>
           <div>
-            <label>Speed: </label>
+          <div className={styles.line}>
+            <label className={styles.label}>Speed: </label>
             <input
+              className={styles.input}
               type="number"
               value={input.speed}
               name="speed"
               onChange={(e) => handleChange(e)}
             />
-            {err.speed && <p>{err.speed}</p>}
+            </div>
+            {err.speed && <p className={styles.error}>{err.speed}</p>}
 
           </div>
           <div>
-            <label>Strength: </label>
+          <div className={styles.line}>
+            <label className={styles.label}>Strength: </label>
             <input
+              className={styles.input}
               type="number"
               value={input.attack}
               name="attack"
               onChange={(e) => handleChange(e)}
             />
-            {err.attack && <p>{err.attack}</p>}
+            </div>
+            {err.attack && <p className={styles.error}>{err.attack}</p>}
 
           </div>
           <div>
-            <label>Defense: </label>
+          <div className={styles.line}>
+            <label className={styles.label}>Defense: </label>
             <input
+              className={styles.input}
               type="number"
               value={input.defense}
               name="defense"
               onChange={(e) => handleChange(e)}
             />
-            {err.defense && <p>{err.defense}</p>}
+            </div>
+            {err.defense && <p className={styles.error}>{err.defense}</p>}
 
           </div>
-          <div>
-            <label>Image: </label>
+          <div className={styles.line}>
+            <label className={styles.label}>Image: </label>
             <input
+              className={styles.input}
               autoComplete='off'
               placeholder="add img link"
               type="text"
@@ -208,10 +232,10 @@ export default function PokemonCreator() {
               onChange={(e) => handleChange(e)}
             />
           </div>
-
           <div>
-            <label>* Pokemon type </label>
-            <select onChange={(e) => handleSelect(e)} >
+          <div className={styles.line}>
+            <label className={styles.label_types}>* Pokemon type </label>
+            <select className={styles.input} onChange={(e) => handleSelect(e)} >
               <option value="" hidden>
                 Select type
               </option>
@@ -220,19 +244,21 @@ export default function PokemonCreator() {
                 </option>
               ))}
             </select>
-
-            {err.types && <p>{err.types}</p>}
+            </div>
+            {err.types && <p className={styles.error}>{err.types}</p>}
 
           </div>
                   {/* me hace p con los types que el usuario selecciono */}
+          <div className={styles.selected}>
         {input.types.map((el) => (
-          <div key={el}>
-            <p>{el}</p>
-            <button onClick={() => handleDelete(el)}>x</button>
+          <div key={el} className={styles.types}>
+            <p >{el}</p>
+            <button className={styles.delete_btn} onClick={() => handleDelete(el)}>x</button>
           </div>
+          
         ))}
-
-          <button type="submit" disabled={Object.keys(err).length}>
+          </div>
+          <button className={styles.create_btn} type="submit" disabled={Object.keys(err).length}>
             Create Pokemon
           </button>
         </form>

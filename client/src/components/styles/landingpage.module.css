@@ -1,6 +1,5 @@
 .background h1{
     margin: 0;
-    /* font-family: "Pokemon Hollow", sans-serif; */
     color:  #0c0504;
     text-shadow: 3px 3px #2c4592;
     font-size: 50px;
@@ -12,6 +11,7 @@
 .background{
     margin: 0;
     background-image: url('../../images/bluepikachu.jpg');
+    background-color: #2c4592;
     background-position: center;
     background-size: cover;
     background-repeat: no-repeat;
@@ -28,15 +28,15 @@
     padding: 5px;
     background-color: white;
     border-radius: 5px ;
-    border: solid 3px  #3f48cc ;
+    border: solid 3px  #2f5487;
     cursor: pointer;
     font-size: 20px;
     font-family: 'Kabel Bd', sans-serif;
-    color: #3f48cc;
+    color: #2f5487;
 }
 .button:hover{
-    background-color: #3f48cc;
+    background-color: #2f5487;
     color: white;
-    border: solid 3px #3f48cc;
+    border: solid 3px #2f5487;
     border-style: groove;
 }

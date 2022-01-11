@@ -30,17 +30,17 @@ export default function Detail() {
                     <div className={styles.info}>
                          <h2 className={styles.title}>{myPokemon[0].name.toUpperCase()}</h2>
                          <h5>ID: {myPokemon[0].id}</h5>
-                         <img className={styles.pic} src={myPokemon[0].sprite} alt = "img not found" width = "250px" height= "250px"/>
                     </div>
+                    <img className={styles.pic} src={myPokemon[0].sprite} alt = "img not found" width = "250px" height= "250px"/>
                     <div className={styles.stats}>
-                        <h4>Stats:</h4>
+                        <h4 className={styles.subtitle}>Stats:</h4>
                         <p>Hp: {myPokemon[0].hp} </p>
                         <p>Strength: {myPokemon[0].attack} </p>
                         <p>Defense: {myPokemon[0].defense} </p>
                         <p>Speed: {myPokemon[0].speed}</p>
                         <p>Height: {myPokemon[0].height} </p>
                         <p>Weight: {myPokemon[0].weight} </p>
-                        <p>POKEMON TYPE: {
+                        <p className= {styles.types}>POKEMON TYPE: {
                             // en la api los types vienen en un arreglo de strings y los que vienen de la bd vienen en un arreglo de obj con prop name
                             // la forma de acceder segun venga de api o de bd es distinta
                             myPokemon[0].types? !myPokemon[0].createdInDB? myPokemon[0].types + " " : myPokemon[0].types.map(el => el.name.toUpperCase() + " ") : "No pokemon type specified for this pokemon, sorry"

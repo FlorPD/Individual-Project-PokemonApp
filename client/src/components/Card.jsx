@@ -9,7 +9,7 @@ export default function Card({name, sprite, types, createdInDB }){
                 <h2 className={styles.title}>{name}</h2>
                 <h4 className={styles.types}>TYPE: {createdInDB ? types.map((el) => el.name.toUpperCase() + (" ")) : types } </h4> 
             </div>
-            <img src={sprite} alt = "img not found" width = "200px" height= "200px"/>
+            <img src={sprite} alt = "img not found" width = "220px" height= "220px"/>
         </span>
         
     )

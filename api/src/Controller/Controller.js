@@ -78,11 +78,12 @@ const getApiInfo = async () => {
   }
   
   async function showPokemonsById(req, res) {
-    const id = req.params.id.trim();   // quita el espacio 
+    const id = req.params.id;   // quita el espacio 
     const info = await getAllPokemons();
     try {
       if (id) {
-        let pokemonId = info.filter((p) => p.id.toString() == id.toString());
+        let pokemonId = info.filter((p) => p.id == id);
+        console.log(id)
         if (pokemonId.length > 0) res.status(200).json(pokemonId);
         else res.status(400).json({ message: "No pokemons with that ID." });
       }

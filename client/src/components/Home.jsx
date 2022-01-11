@@ -8,7 +8,7 @@ import Paginado from "./Paginado"
 import SearchBar from "./SearchBar";
 import { Loader } from "./Loader";
 import styles from './styles/home.module.css'
-import pokemon from '../images/pokemon.png'
+import pokemon from '../images/title.png'
 
 
 export default function Home(){
@@ -144,7 +144,8 @@ export default function Home(){
                         </div>
                     )
                 }) : loading? <Loader/> :
-                 <h3>No Pokemon avaliable</h3>
+                 <h3 className={styles.error} >No Pokemon avaliable</h3>
+                 
             } 
             
             </div>
