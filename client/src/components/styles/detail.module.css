@@ -7,8 +7,8 @@
     background-color:  #bcdf7f ;
     background-image: url('../../images/background.jpg');
     background-position: center;
-    background-size: contain;
-    background-repeat: repeat;
+    background-size: cover;
+    background-repeat: no-repeat;
     
     }
 

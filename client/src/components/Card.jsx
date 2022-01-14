@@ -1,7 +1,7 @@
 import React from "react";
 import styles from './styles/card.module.css'
 
-export default function Card({name, sprite, types, createdInDB }){
+export default function Card({name, sprite, types, createdInDB }){  // props hago destructuring
     return (
         
         <span className={styles.card}>

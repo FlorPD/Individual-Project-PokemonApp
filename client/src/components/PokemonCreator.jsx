@@ -41,9 +41,8 @@ export default function PokemonCreator() {
     const dispatch = useDispatch();
     const navigate = useNavigate();
     
-    const types = useSelector((state) => state.types)   // ME TRAIGO EL ESTADO DE LOS TYPES
+    const types = useSelector((state) => state.types)   // ME TRAIGO EL ESTADO DE LOS TYPES   
     console.log(types)
-    
     
     const [err, setErr] = useState("");   // FORMULARIO CONTROLADO
 
@@ -60,16 +59,21 @@ export default function PokemonCreator() {
         types: [],
     })
 
+    useEffect(() => {   //componentDidMount
+        dispatch(getPokemonType()) 
+    }, [dispatch]);
+
     function handleChange(e) {
          setInput({
                     ...input,
                     [e.target.name]: e.target.value  // seteo el input. A medida que el usuario va escrbiendo se va guardando en el estado. e.target.value es lo que el usuario escribe
                 })
-            setErr(validate({                // seteo el estado de errors
+         setErr(validate({                // seteo el estado de errors
                 ...input,
                 [e.target.name]: e.target.value,
             }))
         }
+
      function handleSelect(e){
          setInput({
             ...input,
@@ -110,8 +114,7 @@ export default function PokemonCreator() {
         })
         navigate('/home')  // redirigir a home cuando el usuario haga el submit   
     }
-    useEffect(() => { dispatch(getPokemonType()) }, [dispatch]); // cuand ome traigo los tipos de pokemones
-
+    
     return (
       <div className={styles.container}>
         <NavLink to="/home">

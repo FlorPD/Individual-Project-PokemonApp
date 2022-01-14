@@ -10,18 +10,23 @@ export function getAllPokemons() {
     });
     }catch(e){
       console.log(e)
+      alert("Something went wrong, please try again")
     }
     
   };
 }
 export function getPokemonType() {
   return async function (dispatch) {
-    var json = await axios.get("http://localhost:3001/types", {});
-
-    return dispatch({
-      type: "GET_POKEMONS_TYPE",
-      payload: json.data,
-    });
+    try{
+        var json = await axios.get("http://localhost:3001/types", {});
+        return dispatch({
+        type: "GET_POKEMONS_TYPE",
+        payload: json.data,
+      });
+    }catch(e){
+      console.log(e)
+    }
+    
   };
 }
 
@@ -53,6 +58,7 @@ export function getPokemonName(name) {
         payload: json.data, // lo que devuelve la ruta una vez que le asigno un name
       });
     } catch (e) {
+      // console.log(e)
       if (e.response) {
         alert(e.response.data.message);
       }
@@ -61,13 +67,16 @@ export function getPokemonName(name) {
 }
 export function postPokemon(payload) {
   // payload es la data que viene en el form
-  return async function () {
+  return async function (dispatch) {
     try {
-      var newPokemon = await axios.post(
+      const newPokemon = await axios.post(
         "http://localhost:3001/pokemons",
         payload
       );
-      return newPokemon;
+      return dispatch({
+        type: "POST_POKEMON",
+        payload: newPokemon
+      });
     } catch (e) {
       console.log(e);
     }

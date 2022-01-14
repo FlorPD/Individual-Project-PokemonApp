@@ -13,6 +13,7 @@ export default function Detail() {
     const loading = true
 
     const myPokemon = useSelector((state) => state.detail) // me traigo el estado de detail (mapStateToProps). // useSelector devuelve la parte del estado que quiero
+    // console.log(myPokemon)
 
     useEffect(() => {
         dispatch(getPokemonDetail(params.id)) 

@@ -29,7 +29,6 @@ export default function rootReducer(state = initialState, action) {
           detail: []
         }
     case "GET_POKEMON_NAME":
-      console.log(action.payload)
       return {
         ...state, // action.payload son todos los pokemones. Si coincide con el name, lo filtra
         pokemons: action.payload,
@@ -67,11 +66,9 @@ export default function rootReducer(state = initialState, action) {
   
     case "ORDER_BY_NAME": //pokemons porque es el que se esta renderizando
       let alphaArr =
-        action.payload === "A-Z"
-          ? state.pokemons.sort(function (a, b) {
-              // el sort va comparando dos valores
+        action.payload === "A-Z"? state.pokemons.sort(function (a, b) {
+              // el sort va comparando dos valores. A la derecha va el mayor
               if (a.name.toLowerCase() > b.name.toLowerCase()) {
-                // los pone a la derecha
                 return 1;
               }
               if (a.name.toLowerCase() < b.name.toLowerCase()) {
@@ -79,7 +76,7 @@ export default function rootReducer(state = initialState, action) {
               }
               return 0; // si son iguales los deja asi
             })
-          : state.pokemons.sort(function (a, b) {
+               : state.pokemons.sort(function (a, b) {
               if (a.name.toLowerCase() > b.name.toLowerCase()) {
                 return -1;
               }

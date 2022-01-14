@@ -15,6 +15,7 @@ export default function Home(){
     const dispatch = useDispatch() // despachar acciones
     
     const allPokemons = useSelector((state) => state.pokemons) // me traigo todo lo que esta en el estado de pokemons. Reemplaza al mapStateToProps
+   
     // useState --> seteo el estado local
     const [order, setOrder] = useState("") // estado local
 
@@ -33,7 +34,7 @@ export default function Home(){
     }
    
     const [loading,setLoading] = useState(true)
-
+    
     // Para traer estado los pokemones cuando el componente se monta
     useEffect(() => {
         dispatch(getAllPokemons()) // despacho la accion que me trae todos los pokemones
@@ -43,12 +44,16 @@ export default function Home(){
     function handleClick(e){
         e.preventDefault()
         dispatch(getAllPokemons())
+        setLoading(true)
+        
+        
     }
     function sortByAttack(e) {
         e.preventDefault();
         dispatch(orderByAttack(e.target.value));
         setCurrentPage(1);                      // seteo la pagina en 1 y creo un estado local que empieza vacio y luego lo seteo para que
-        setOrder(`Ordenado ${e.target.value}`)  // me renderize el ordenamiento
+        setOrder(e.target.value)  // seteo el orden actual para que renderice eso
+        
     }
     function handleFilterPokemonTypes(e) {
         dispatch(filterByType(e.target.value))
@@ -122,7 +127,9 @@ export default function Home(){
                     <option value='api'>From API </option>
                 </select>
 
-                <SearchBar />
+                <SearchBar
+                setLoading={setLoading}
+                />
 
                 <Paginado
                  pokemonPerPage={pokemonPerPage}

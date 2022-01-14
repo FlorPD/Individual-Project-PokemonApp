@@ -14,10 +14,10 @@ module.exports = (sequelize) => {
       type: DataTypes.STRING,
       allowNull: false,
     },
-    hp:{                         // vida del pokemon
+    hp:{                         
       type: DataTypes.INTEGER
     },
-    attack:{                    // strength del pokemon
+    attack:{                   
       type: DataTypes.INTEGER
     },
     defense:{
@@ -33,7 +33,7 @@ module.exports = (sequelize) => {
       type: DataTypes.INTEGER
     },
     sprite:{
-      type:DataTypes.STRING
+      type:DataTypes.TEXT
     },
     createdInDB:{
       type: DataTypes.BOOLEAN,

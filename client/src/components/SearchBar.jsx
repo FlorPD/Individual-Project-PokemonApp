@@ -4,9 +4,10 @@ import {useDispatch } from "react-redux";
 import { getPokemonName } from "../actions/index";
 import styles from "./styles/searchBar.module.css"
 
-export default function SearchBar(){
+export default function SearchBar({setLoading}){
     const dispatch = useDispatch()
     const [name, setName] = useState('') // estado local
+   
     
     
     function handleInputChange(e){
@@ -17,13 +18,17 @@ export default function SearchBar(){
     function handleSubmit(e){
         e.preventDefault()
         dispatch(getPokemonName(name)) // name es el estado local, lo que esta escribiendo el usuario
-        setName('')
+        setLoading(true)
+        // setName("")
+        
+        
     }
     
     return(
         <div className={styles.search}>
             <input className={styles.search_input}
             type = "text"
+            value={name}
             placeholder = "Search by name.."
             onChange = {(e) => handleInputChange(e)}
             />

@@ -1,7 +1,7 @@
 const axios = require("axios").default;
 const { Pokemon, Types } = require("../db");
 
-const getApiInfo = async () => {
+async function getApiInfo() {
   
     const apiUrl1 = await axios.get("https://pokeapi.co/api/v2/pokemon"); // primeros 20 Pokemones
     const apiUrl2 = await axios.get(apiUrl1.data.next); // del 20-40 P
@@ -9,35 +9,29 @@ const getApiInfo = async () => {
   
     try {
       const subConsult = apiResults.map((e) => axios.get(e.url));
-      let resultSubConsult = Promise.all(subConsult) //axios.all
-        .then((e) => {
-          let resPokemon = e.map((e) => e.data);
-          let pokemons = [];
-          resPokemon.map((e) => {
-            pokemons.push({
-              id: e.id,
-              name: e.name,
-              hp: e.stats[0].base_stat,
-              attack: e.stats[1].base_stat,
-              defense: e.stats[2].base_stat,
-              speed: e.stats[5].base_stat,
-              height: e.height,
-              weight: e.weight,
-              sprite: e.sprites.other.home.front_default,
-              types: e.types.map((element) => {
+      let resultSubConsult = await Promise.all(subConsult) 
+      let pokemons = resultSubConsult.map((e) => {
+            return{
+              id: e.data.id,
+              name: e.data.name,
+              hp: e.data.stats[0].base_stat,
+              attack: e.data.stats[1].base_stat,
+              defense: e.data.stats[2].base_stat,
+              speed: e.data.stats[5].base_stat,
+              height: e.data.height,
+              weight: e.data.weight,
+              sprite: e.data.sprites.other.home.front_default,
+              types: e.data.types.map((element) => {
                 return element.type.name.toUpperCase() + " ";
               }),
-            });
-          });
+            }
+         });
           return pokemons;
-        });
-      return resultSubConsult;
-    } catch (e) {
+    }catch(e) {
       console.log(e);
     }
   };
-  
-  const getDBInfo = async () => {
+  async function getDBInfo() {
     return await Pokemon.findAll({
       include: {
         model: Types,
@@ -49,7 +43,7 @@ const getApiInfo = async () => {
     });
   };
   
-  const getAllPokemons = async () => {
+  async function getAllPokemons(){
     const apiInfo = await getApiInfo();
     const DBInfo = await getDBInfo();
   
@@ -61,12 +55,12 @@ const getApiInfo = async () => {
     const info = await getAllPokemons();
     try {
       if (name) {
-        let pokemonName = info.filter(
-          (pokemon) => pokemon.name.toLowerCase() === name.toLowerCase()
+        let pokemonName = info.filter((pokemon) => pokemon.name.toLowerCase() === name.toLowerCase()
         );
         if (pokemonName.length > 0){
-          res.status(200).send(pokemonName);
+          res.status(200).json(pokemonName);
         }else{
+          // res.status(200).json(pokemonName=[])
           res.status(400).json({ message: `${name} not found. Enter a valid name` })
         }
       } else{
@@ -78,12 +72,12 @@ const getApiInfo = async () => {
   }
   
   async function showPokemonsById(req, res) {
-    const id = req.params.id;   // quita el espacio 
+    const id = req.params.id;   
     const info = await getAllPokemons();
+
     try {
       if (id) {
-        let pokemonId = info.filter((p) => p.id == id);
-        console.log(id)
+        let pokemonId = info.filter((p) => p.id.toString() === id.toString());        
         if (pokemonId.length > 0) res.status(200).json(pokemonId);
         else res.status(400).json({ message: "No pokemons with that ID." });
       }
@@ -100,7 +94,7 @@ const getApiInfo = async () => {
     pokemonsTypes.forEach((element) => {
       if (element) {
         Types.findOrCreate({                   // GUARDO TODOS LOS TYPES EN MI BASE DE DATOS
-         
+
           where: { name: element },
         });
       }
