@@ -8,21 +8,18 @@ import styles from './styles/detail.module.css'
 
 export default function Detail() {
     const dispatch = useDispatch()
-    const params = useParams() // version 6 de react router dom no usa match.params. Params es un objeto
-    
-    const loading = true
+    const params = useParams() // v6 de react router dom 
+    // console.log(params)
 
-    const myPokemon = useSelector((state) => state.detail) // me traigo el estado de detail (mapStateToProps). // useSelector devuelve la parte del estado que quiero
-    // console.log(myPokemon)
+    const loading = true
+    const myPokemon = useSelector((state) => state.detail)
 
     useEffect(() => {
         dispatch(getPokemonDetail(params.id)) 
         return () => {
             dispatch(clearDetailsState()) }   //componentWilUnmount
     }, [dispatch, params.id])
- 
-
-                                         
+                                          
     return(
         <div className={styles.container}>
             {
@@ -43,8 +40,7 @@ export default function Detail() {
                         <p>Weight: {myPokemon[0].weight} </p>
                         <p className= {styles.types}>POKEMON TYPE: {
                             // en la api los types vienen en un arreglo de strings y los que vienen de la bd vienen en un arreglo de obj con prop name
-                            // la forma de acceder segun venga de api o de bd es distinta
-                            myPokemon[0].types? !myPokemon[0].createdInDB? myPokemon[0].types + " " : myPokemon[0].types.map(el => el.name.toUpperCase() + " ") : "No pokemon type specified for this pokemon, sorry"
+                            myPokemon[0].types? !myPokemon[0].createdInDB? myPokemon[0].types + " " : myPokemon[0].types.map(el => el.name.toUpperCase() + " ") : "No type specified for this pokemon, sorry"
                             }</p>
                     </div>
 

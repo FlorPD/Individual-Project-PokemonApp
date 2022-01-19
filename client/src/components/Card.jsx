@@ -1,7 +1,7 @@
 import React from "react";
 import styles from './styles/card.module.css'
 
-export default function Card({name, sprite, types, createdInDB }){  // props hago destructuring
+export default function Card({name, sprite, types, createdInDB }){ 
     return (
         
         <span className={styles.card}>
@@ -14,7 +14,5 @@ export default function Card({name, sprite, types, createdInDB }){  // props hag
         
     )
 }
-// Los pokemones creados tienen types en formato de arreglo de objetos con propiedad name
-// ternario: si llega types --> hace algo , sino devolve Not avaliable
-    //       si llega types y el pokemon tiene createdInDb, tengo que mapear el types y devolver cada elemento. Sino devolver types
+
  

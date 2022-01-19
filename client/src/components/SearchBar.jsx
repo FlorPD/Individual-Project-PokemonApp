@@ -6,22 +6,18 @@ import styles from "./styles/searchBar.module.css"
 
 export default function SearchBar({setLoading}){
     const dispatch = useDispatch()
-    const [name, setName] = useState('') // estado local
-   
-    
+    const [name, setName] = useState('')
     
     function handleInputChange(e){
         e.preventDefault()
-        setName(e.target.value)  // e.target.value --> Lo que el usuario esta escribiendo. Seteo el estado con ese valor
+        setName(e.target.value)
     }
 
     function handleSubmit(e){
         e.preventDefault()
-        dispatch(getPokemonName(name)) // name es el estado local, lo que esta escribiendo el usuario
+        dispatch(getPokemonName(name))
         setLoading(true)
-        // setName("")
-        
-        
+        setName("")
     }
     
     return(

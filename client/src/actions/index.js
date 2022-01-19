@@ -9,8 +9,8 @@ export function getAllPokemons() {
       payload: json.data,
     });
     }catch(e){
-      console.log(e)
-      alert("Something went wrong, please try again")
+        console.log(e)
+        alert("Something went wrong, please try again")    
     }
     
   };
@@ -40,6 +40,7 @@ export function getPokemonDetail(id) {
       });
     } catch (e) {
       console.log(e);
+      alert("Something went wrong, please try again")
     }
   };
 }
@@ -55,7 +56,7 @@ export function getPokemonName(name) {
       let json = await axios.get(`http://localhost:3001/pokemons?name=${name}`);
       return dispatch({
         type: "GET_POKEMON_NAME",
-        payload: json.data, // lo que devuelve la ruta una vez que le asigno un name
+        payload: json.data,
       });
     } catch (e) {
       // console.log(e)
@@ -66,16 +67,14 @@ export function getPokemonName(name) {
   };
 }
 export function postPokemon(payload) {
-  // payload es la data que viene en el form
   return async function (dispatch) {
     try {
-      const newPokemon = await axios.post(
-        "http://localhost:3001/pokemons",
+      const newPokemon = await axios.post("http://localhost:3001/pokemons",
         payload
       );
       return dispatch({
         type: "POST_POKEMON",
-        payload: newPokemon
+        payload: newPokemon,
       });
     } catch (e) {
       console.log(e);
@@ -84,7 +83,6 @@ export function postPokemon(payload) {
 }
 
 export function filterByType(payload) {
-  // payload es el type seleccionado
   return {
     type: "FILTER_BY_TYPE",
     payload,
@@ -97,7 +95,6 @@ export function filterCreated(payload) {
   };
 }
 export function orderByName(payload) {
-  // el payload que me puede llegar es A-Z O Z-A
   return {
     type: "ORDER_BY_NAME",
     payload,

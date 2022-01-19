@@ -1,6 +1,6 @@
 const initialState = {
-  pokemons: [], // tiene los filtrados. Trabajo con esta
-  allPokemons: [], // soporte para que tenga siempre todo los pokemones
+  pokemons: [],
+  allPokemons: [],
   detail: [],
   types: [],
 };
@@ -30,7 +30,7 @@ export default function rootReducer(state = initialState, action) {
         }
     case "GET_POKEMON_NAME":
       return {
-        ...state, // action.payload son todos los pokemones. Si coincide con el name, lo filtra
+        ...state,
         pokemons: action.payload,
       
       };
@@ -41,7 +41,7 @@ export default function rootReducer(state = initialState, action) {
     case "FILTER_BY_TYPE":
       const allPokemons = state.allPokemons;
       const dbFilterTypes = allPokemons.filter((el) => el.createdInDB && el.types.some((t) => t.name === action.payload)
-      ); // some sirve para determinar si alguno de los elementos cumple con cierta condicion
+      );
       const apiFilterTypes = allPokemons.filter((el) => !el.createdInDB && el.types.some((t) => t === action.payload.toUpperCase() + " ")
       );
 
@@ -64,19 +64,18 @@ export default function rootReducer(state = initialState, action) {
         pokemons: action.payload === "all"? state.allPokemons : action.payload === "api"? fromApi : created
       }
   
-    case "ORDER_BY_NAME": //pokemons porque es el que se esta renderizando
-      let alphaArr =
-        action.payload === "A-Z"? state.pokemons.sort(function (a, b) {
-              // el sort va comparando dos valores. A la derecha va el mayor
+    case "ORDER_BY_NAME":
+      let sortedArr =
+        action.payload === "A-Z"? [...state.pokemons].sort(function (a, b) {
               if (a.name.toLowerCase() > b.name.toLowerCase()) {
                 return 1;
               }
               if (a.name.toLowerCase() < b.name.toLowerCase()) {
                 return -1;
               }
-              return 0; // si son iguales los deja asi
+              return 0;
             })
-               : state.pokemons.sort(function (a, b) {
+               : [...state.pokemons].sort(function (a, b) {
               if (a.name.toLowerCase() > b.name.toLowerCase()) {
                 return -1;
               }
@@ -87,25 +86,24 @@ export default function rootReducer(state = initialState, action) {
             });
       return {
         ...state,
-        pokemons: alphaArr,
+        pokemons: sortedArr
       };
     case "ORDER_BY_ATTACK":
       let sortedArray =
-        action.payload === "weakest"
-          ? state.pokemons.sort(function (a, b) {
-              if (a.attack > b.attack) return 1; // el valor mas chico lo ponga a la izquierda
+        action.payload === "weakest" ?
+             [...state.pokemons].sort(function (a, b) {
+              if (a.attack > b.attack) return 1; 
               if (a.attack < b.attack) return -1;
               return 0;
             })
-          : state.pokemons.sort(function (a, b) {
-              // el valor mas grande lo ponga a la izq
+           : [...state.pokemons].sort(function (a, b) {
               if (a.attack > b.attack) return -1;
               if (a.attack < b.attack) return 1;
               return 0;
             });
       return {
         ...state,
-        pokemons: sortedArray,
+        pokemons: sortedArray
       };
 
     default:

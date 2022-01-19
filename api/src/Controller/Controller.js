@@ -2,12 +2,12 @@ const axios = require("axios").default;
 const { Pokemon, Types } = require("../db");
 
 async function getApiInfo() {
-  
-    const apiUrl1 = await axios.get("https://pokeapi.co/api/v2/pokemon"); // primeros 20 Pokemones
-    const apiUrl2 = await axios.get(apiUrl1.data.next); // del 20-40 P
-    const apiResults = apiUrl1.data.results.concat(apiUrl2.data.results); 
-  
+
     try {
+      const apiUrl1 = await axios.get("https://pokeapi.co/api/v2/pokemon"); // primeros 20 Pokemones
+      const apiUrl2 = await axios.get(apiUrl1.data.next);                   // del 20-40 P
+      const apiResults = apiUrl1.data.results.concat(apiUrl2.data.results); 
+
       const subConsult = apiResults.map((e) => axios.get(e.url));
       let resultSubConsult = await Promise.all(subConsult) 
       let pokemons = resultSubConsult.map((e) => {
@@ -44,14 +44,20 @@ async function getApiInfo() {
   };
   
   async function getAllPokemons(){
+    try{
     const apiInfo = await getApiInfo();
     const DBInfo = await getDBInfo();
-  
+
     return apiInfo.concat(DBInfo);
+
+    }catch(e){
+      console.log(e)
+    }
+    
   };
   
   async function showAllPokemons(req, res) {
-    const name = req.query.name;                    // pokemons/?name=pikachu
+    const name = req.query.name;
     const info = await getAllPokemons();
     try {
       if (name) {
@@ -93,14 +99,17 @@ async function getApiInfo() {
     const pokemonsTypes = types.map((e) => e.name);
     pokemonsTypes.forEach((element) => {
       if (element) {
-        Types.findOrCreate({                   // GUARDO TODOS LOS TYPES EN MI BASE DE DATOS
-
+        Types.findOrCreate({
           where: { name: element },
         });
       }
     });
-    const pokemons = await Types.findAll(); 
-    res.status(200).json(pokemons);
+    const pokemons = await Types.findAll();
+    if(pokemons.length > 0){
+      res.status(200).json(pokemons);
+    }else{
+      res.status(400).send("No types avaliable")
+    } 
   }
   
   async function postPokemon(req, res) {
