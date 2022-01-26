@@ -19,3 +19,8 @@
     border: 2px solid transparent;
     border-style: groove;
 }
+@media only screen and (max-width: 1000px){
+    .card{
+        width:fit-content ;
+    }
+}

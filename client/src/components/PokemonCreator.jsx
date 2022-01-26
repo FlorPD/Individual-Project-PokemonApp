@@ -4,6 +4,7 @@ import { NavLink, useNavigate } from 'react-router-dom';
 import { getPokemonType, postPokemon } from '../actions';
 import { useDispatch, useSelector } from 'react-redux';
 import styles from "./styles/pokemoncreator.module.css"
+import Swal from 'sweetalert2'
 
 
 function validate(input) {
@@ -52,7 +53,6 @@ export default function PokemonCreator() {
         types: [],
     })
     const [err, setErr] = useState({});
-    // console.log(err)
 
     useEffect(() => {
       dispatch(getPokemonType());
@@ -97,7 +97,10 @@ export default function PokemonCreator() {
     function handleSubmit(e) {
         e.preventDefault();
         dispatch(postPokemon(input))
-        alert('Pokemon successfully created')
+        Swal.fire({
+          icon: 'success',
+          text: "Pokemon successfully created!"
+        }) 
         setInput({
             name: '',
             height: '',

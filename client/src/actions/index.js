@@ -1,4 +1,5 @@
 import axios from "axios";
+import Swal from 'sweetalert2'
 
 export function getAllPokemons() {
   return async function (dispatch) {
@@ -10,7 +11,11 @@ export function getAllPokemons() {
     });
     }catch(e){
         console.log(e)
-        alert("Something went wrong, please try again")    
+        Swal.fire({
+          icon: 'error',
+          title: 'Oops...',
+          text: "Something went wrong, please try again"
+        }) 
     }
     
   };
@@ -25,8 +30,7 @@ export function getPokemonType() {
       });
     }catch(e){
       console.log(e)
-    }
-    
+    }    
   };
 }
 
@@ -40,7 +44,11 @@ export function getPokemonDetail(id) {
       });
     } catch (e) {
       console.log(e);
-      alert("Something went wrong, please try again")
+      Swal.fire({
+        icon: 'error',
+        title: 'Oops...',
+        text: "Something went wrong, please try again"
+      }) 
     }
   };
 }
@@ -59,9 +67,12 @@ export function getPokemonName(name) {
         payload: json.data,
       });
     } catch (e) {
-      // console.log(e)
       if (e.response) {
-        alert(e.response.data.message);
+        Swal.fire({
+          icon: 'error',
+          title: 'Oops...',
+          text: e.response.data.message,
+        })
       }
     }
   };
@@ -78,6 +89,11 @@ export function postPokemon(payload) {
       });
     } catch (e) {
       console.log(e);
+      Swal.fire({
+        icon: 'error',
+        title: 'Oops...',
+        text: "Something went wrong, please try again"
+      }) 
     }
   };
 }

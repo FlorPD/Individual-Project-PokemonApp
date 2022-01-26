@@ -7,7 +7,7 @@ export default function LandingPage(){
     return (
       <div className={styles.background}>
         <div className={styles.box}>
-          <h1>Welcome to My Poke-App!</h1>
+          <h1>Welcome to My Pokemon App!</h1>
           <NavLink to="/home">
             <button className={styles.button}>Enter</button>
           </NavLink>

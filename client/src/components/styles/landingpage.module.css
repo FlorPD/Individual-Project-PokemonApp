@@ -1,9 +1,8 @@
 
 .background{
     display: flex;
-    justify-content: right;
-    align-items: center;
-    background-image: url('../../images/pokeballbg.jpg');
+    justify-content: center;
+    background-image: url('../../images/wallpaper.jpg');
     background-color: #78d8ee ;
     background-position: center;
     background-size: cover;
@@ -12,9 +11,9 @@
     width: 100%;
 }
 .box{
+    margin-left: 2vw;
+    margin-top: 10vh;
     position: relative;
-    margin-right: 3vw;
-    bottom: 15vh;
     padding: 20px;
     display: flex;
     flex-direction: column;
@@ -25,18 +24,19 @@
     margin: 0;
     color:  #f0fafb ;
     text-shadow: 3px 3px #040404;
-    font-size: 2.8rem;
+    font-size: 3rem;
+    /* animation: ; */
 }
 
 .button{
-    width: 100px;
+    width: 110px;
     height: fit-content;
     padding: 5px;
     background-color: #c32530 ;
     border-radius: 5px ;
     border: solid 3px transparent;
     cursor: pointer;
-    font-size: 20px;
+    font-size: 1.5rem;
     font-family: 'Kabel Bd', sans-serif;
     color: #f0fafb ;
     box-shadow: 0 2px 3px 2px rgba(20, 20, 20, 0.4);

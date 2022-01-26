@@ -31,6 +31,10 @@ export default function Home(){
     };
    
     const [loading,setLoading] = useState(true)
+    const [selectStrength, setSelectStrength] = useState("")
+    const [selectAlpha, setSelectAlpha] = useState("")
+    const [selectType, setSelectType] = useState("")
+    const [selectCreated, setSelectCreated] = useState("")
     
     // componentDidMount
     useEffect(() => {
@@ -42,26 +46,34 @@ export default function Home(){
     function handleClick(e){
         e.preventDefault()
         dispatch(getAllPokemons())
+        setSelectStrength("")
+        setSelectAlpha("")
+        setSelectCreated("")
+        setSelectType("")
     }
 
     function sortByAttack(e) {
         e.preventDefault();
         dispatch(orderByAttack(e.target.value));
+        setSelectStrength(e.target.value)
         setCurrentPage(1);
     }
     
     function handleFilterPokemonTypes(e) {
         dispatch(filterByType(e.target.value))
         setLoading(false)
+        setSelectType(e.target.value)
         setCurrentPage(1)
     }
     function handleFilterCreated(e) {
         dispatch(filterCreated(e.target.value))
         setLoading(false)
+        setSelectCreated(e.target.value)
     }
     function sortByAlpha(e) {
         e.preventDefault();
         dispatch(orderByName(e.target.value))
+        setSelectAlpha(e.target.value)
         setCurrentPage(1);
     }
 
@@ -75,19 +87,19 @@ export default function Home(){
             </button>
 
             <div>
-                <select className={styles.select} onChange={e => sortByAttack(e)}>
-                    <option value='' hidden >ORDER BY STRENGTH</option>
+                <select value ={selectStrength} className={styles.select} onChange={e => sortByAttack(e)}>
+                    <option value="" hidden >ORDER BY STRENGTH</option>
                     <option value='strongest'>STRONGEST</option>
                     <option value='weakest'>WEAKEST</option>
                 </select>
 
-                <select className={styles.select} onChange={e => sortByAlpha(e)}>
+                <select value={selectAlpha} className={styles.select} onChange={e => sortByAlpha(e)}>
                     <option value='' hidden>ORDER BY NAME</option>
                     <option value='A-Z'>A to Z</option>
                     <option value='Z-A'>Z to A</option>
                 </select>
 
-                <select className={styles.select} onChange={e => handleFilterPokemonTypes(e)}>
+                <select value ={selectType} className={styles.select} onChange={e => handleFilterPokemonTypes(e)}>
                     <option value = "" hidden>FILTER BY TYPE</option>
                     <option value= 'All'>ALL</option>
                     {
@@ -99,8 +111,8 @@ export default function Home(){
                     }
              </select>
 
-                 <select className={styles.select} onChange={e => handleFilterCreated(e)}>
-                    <option value = "" hidden>FILTER BY</option>
+                 <select value ={selectCreated} className={styles.select} onChange={e => handleFilterCreated(e)}>
+                    <option value = "" hidden>FILTER BY ORIGIN</option>
                     <option value='all'>ALL POKEMONS</option>
                     <option value='created'>CREATED</option>
                     <option value='api'>FROM API </option>

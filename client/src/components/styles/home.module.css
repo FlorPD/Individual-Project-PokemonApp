@@ -44,13 +44,14 @@
 }
 .refresh_btn {
   font-size: 15px;
+  padding: 5px 40px 5px 25px;
   display: flex;
   position: relative;
   align-items: center;
   align-self: center;
   font-family: "Kabel Bd", sans-serif;
-  width: 15vw;
-  height: 5vh;
+  width: fit-content;
+  height:fit-content;
   justify-content: center;
   background-image: url("../../images/pokeball.png");
   background-size: 13%;
@@ -94,6 +95,16 @@
 .cards {
   display: inline-block;
 }
+@media only screen and (max-width: 1000px){
+  .cards {
+  display: flex;
+  width: fit-content;
+  justify-content: center;
+  margin-left: auto;
+  margin-right: auto;
+  }
+
+}
 .cards a {
   text-decoration: none;
   color: #2c4592;
@@ -109,4 +120,10 @@
   color: #e5e5e5;
   border-radius: 4px;
   border: solid 2px transparent
+}
+
+@media only screen and (max-width: 768px){
+  .button{
+    justify-content: center;
+  }
 }

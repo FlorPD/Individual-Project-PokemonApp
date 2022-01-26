@@ -21,17 +21,16 @@ export default function Detail() {
     }, [dispatch, params.id])
                                           
     return(
-        <div className={styles.container}>
+        <div className={styles.page}>
             {
                 myPokemon.length > 0 ?
-                <div>
+                <div className={styles.container}>
                     <div className={styles.info}>
                          <h2 className={styles.title}>{myPokemon[0].name.toUpperCase()}</h2>
-                         <h5>ID: {myPokemon[0].id}</h5>
-                    </div>
-                    <img className={styles.pic} src={myPokemon[0].sprite} alt = "img not found" width = "250px" height= "250px"/>
-                    <div className={styles.stats}>
-                        <h4 className={styles.subtitle}>Stats:</h4>
+                         <img className={styles.pic} src={myPokemon[0].sprite} alt = "img not found" width = "260px" height= "260px"/>
+                         </div>
+                         <div className={styles.stats}>
+                         <h4 className={styles.subtitle}>Stats:</h4>
                         <p>Hp: {myPokemon[0].hp} </p>
                         <p>Strength: {myPokemon[0].attack} </p>
                         <p>Defense: {myPokemon[0].defense} </p>
@@ -42,7 +41,8 @@ export default function Detail() {
                             // en la api los types vienen en un arreglo de strings y los que vienen de la bd vienen en un arreglo de obj con prop name
                             myPokemon[0].types? !myPokemon[0].createdInDB? myPokemon[0].types + " " : myPokemon[0].types.map(el => el.name.toUpperCase() + " ") : "No type specified for this pokemon, sorry"
                             }</p>
-                    </div>
+
+                         </div>
 
                 </div> 
                         : loading ?  <Loader/>

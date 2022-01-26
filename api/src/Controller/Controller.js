@@ -116,6 +116,9 @@ async function getApiInfo() {
     let { id, name, hp, attack, defense, speed, height, weight, sprite, types } = req.body;
   
     try {
+      if(!name || !types.length){
+        res.status(404).send("Name and type are required to create pokemon")
+      }else{
       const newPokemon = await Pokemon.create({
         id,
         name,
@@ -133,6 +136,7 @@ async function getApiInfo() {
       });
       newPokemon.addTypes(typeDB);
       res.send("Pokemon created");
+    }
     } catch (e) {
       console.log(e);
     }
