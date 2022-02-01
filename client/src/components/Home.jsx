@@ -9,6 +9,7 @@ import SearchBar from "./SearchBar";
 import { Loader } from "./Loader";
 import styles from './styles/home.module.css'
 import pokemon from '../images/title.png'
+import sadPikachu from "../images/sad.png"
 
 export default function Home(){
     const dispatch = useDispatch()
@@ -30,7 +31,7 @@ export default function Home(){
       setCurrentPage(pageNumber);
     };
    
-    const [loading,setLoading] = useState(true)
+    const [loading,setLoading] = useState(false)
     const [selectStrength, setSelectStrength] = useState("")
     const [selectAlpha, setSelectAlpha] = useState("")
     const [selectType, setSelectType] = useState("")
@@ -38,6 +39,7 @@ export default function Home(){
     
     // componentDidMount
     useEffect(() => {
+        setLoading(true)
         dispatch(getAllPokemons())
         dispatch(getPokemonType())
     }, [dispatch])
@@ -45,11 +47,13 @@ export default function Home(){
     
     function handleClick(e){
         e.preventDefault()
+        setLoading(true)
         dispatch(getAllPokemons())
         setSelectStrength("")
         setSelectAlpha("")
         setSelectCreated("")
         setSelectType("")
+        
     }
 
     function sortByAttack(e) {
@@ -61,14 +65,14 @@ export default function Home(){
     
     function handleFilterPokemonTypes(e) {
         dispatch(filterByType(e.target.value))
-        setLoading(false)
         setSelectType(e.target.value)
         setCurrentPage(1)
+        setLoading(false)
     }
     function handleFilterCreated(e) {
         dispatch(filterCreated(e.target.value))
-        setLoading(false)
         setSelectCreated(e.target.value)
+        setLoading(false)
     }
     function sortByAlpha(e) {
         e.preventDefault();
@@ -83,7 +87,7 @@ export default function Home(){
 
             <img className ={styles.pic} src = {pokemon} alt='img not found'/>
             <button className={styles.refresh_btn} onClick={e => {handleClick(e)}}>
-                Get all Pokemons
+                Get all Pokemon
             </button>
 
             <div>
@@ -142,7 +146,11 @@ export default function Home(){
                         </div>
                     )
                 }) : loading? <Loader/> :
-                 <h3 className={styles.error} >No Pokemon avaliable</h3>
+                <div>
+                    <h3 className={styles.error} >No Pokemon avaliable</h3>
+                    <img className={styles.sadPikachu} src={sadPikachu}/>
+                </div>
+                 
                  
             } 
             
