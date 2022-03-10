@@ -1,10 +1,10 @@
 import axios from "axios";
 import Swal from 'sweetalert2'
-
+const baseUrl = "https://pokemon-appp.herokuapp.com"
 export function getAllPokemons() {
   return async function (dispatch) {
     try{
-      var json = await axios.get("http://localhost:3001/pokemons", {});
+      var json = await axios.get(`${baseUrl}/pokemons`, {});
       return dispatch({
       type: "GET_POKEMONS",
       payload: json.data,
@@ -23,7 +23,7 @@ export function getAllPokemons() {
 export function getPokemonType() {
   return async function (dispatch) {
     try{
-        var json = await axios.get("http://localhost:3001/types", {});
+        var json = await axios.get(`${baseUrl}/types`, {});
         return dispatch({
         type: "GET_POKEMONS_TYPE",
         payload: json.data,
@@ -37,7 +37,7 @@ export function getPokemonType() {
 export function getPokemonDetail(id) {
   return async function (dispatch) {
     try {
-      let json = await axios.get(`http://localhost:3001/pokemons/${id}`);
+      let json = await axios.get(`${baseUrl}/pokemons/${id}`);
       return dispatch({
         type: "GET_POKEMON_DETAIL",
         payload: json.data,
@@ -61,7 +61,7 @@ export function clearDetailsState() {
 export function getPokemonName(name) {
   return async function (dispatch) {
     try {
-      let json = await axios.get(`http://localhost:3001/pokemons?name=${name}`);
+      let json = await axios.get(`${baseUrl}/pokemons?name=${name}`);
       return dispatch({
         type: "GET_POKEMON_NAME",
         payload: json.data,
@@ -80,7 +80,7 @@ export function getPokemonName(name) {
 export function postPokemon(payload) {
   return async function (dispatch) {
     try {
-      const newPokemon = await axios.post("http://localhost:3001/pokemons",
+      const newPokemon = await axios.post(`${baseUrl}/pokemons`,
         payload
       );
       return dispatch({

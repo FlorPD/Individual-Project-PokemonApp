@@ -148,7 +148,7 @@ export default function Home(){
                 }) : loading? <Loader/> :
                 <div>
                     <h3 className={styles.error} >No Pokemon avaliable</h3>
-                    <img className={styles.sadPikachu} src={sadPikachu}/>
+                    <img className={styles.sadPikachu} src={sadPikachu} alt="img not found"/>
                 </div>
                  
                  
