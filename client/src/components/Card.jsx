@@ -1,5 +1,6 @@
 import React from "react";
 import styles from './styles/card.module.css'
+import notFound from "../images/404.png"
 
 export default function Card({name, sprite, types, createdInDB }){ 
     return (
@@ -9,7 +10,7 @@ export default function Card({name, sprite, types, createdInDB }){
                 <h2 className={styles.title}>{name}</h2>
                 <h4 className={styles.types}>TYPE: {createdInDB ? types.map((el) => el.name.toUpperCase() + (" ")) : types } </h4> 
             </div>
-            <img src={sprite} alt = "img not found" width = "260px" height= "260px"/>
+            <img src={sprite.length? sprite : notFound} alt = "img not found" width = "260px" height= "260px"/>
         </span>
         
     )

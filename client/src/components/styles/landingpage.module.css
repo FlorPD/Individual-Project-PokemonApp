@@ -2,7 +2,7 @@
 .background{
     display: flex;
     justify-content: center;
-    background-image: url('../../images/wallpaper.jpg');
+    background-image: url('../../images/landing.png');
     background-color: #78d8ee ;
     background-position: center;
     background-size: cover;
@@ -10,40 +10,25 @@
     height: 100vh;
     width: 100%;
 }
-.box{
-    margin-left: 2vw;
-    margin-top: 10vh;
-    position: relative;
-    padding: 20px;
-    display: flex;
-    flex-direction: column;
-    height: 30vh;
-    justify-content: space-around;
-}
-.box h1{
-    margin: 0;
-    color:  #f0fafb ;
-    text-shadow: 3px 3px #040404;
-    font-size: 3rem;
-    /* animation: ; */
-}
-
 .button{
-    width: 110px;
+    position: relative;
+    z-index: 100;
+    top: 46%;
+    width: 100%;
     height: fit-content;
-    padding: 5px;
-    background-color: #c32530 ;
-    border-radius: 5px ;
+    padding: 7px;
+    border-radius: 10% ;
     border: solid 3px transparent;
     cursor: pointer;
-    font-size: 1.5rem;
+    font-size: 1.4rem;
     font-family: 'Kabel Bd', sans-serif;
-    color: #f0fafb ;
-    box-shadow: 0 2px 3px 2px rgba(20, 20, 20, 0.4);
+    color: #f0fafb;
+    background-color: #393939 ;
+   
 }
 .button:hover{
-    background-color: #053c5e  ;
+    background-color:  #d2403d   ;
     color: #f0fafb;
-    border: solid 3px #f0fafb;
-    box-shadow: 0 2px 3px 2px rgba(20, 20, 20, 0.4);
+    border: solid 3px transparent;
+   
 }

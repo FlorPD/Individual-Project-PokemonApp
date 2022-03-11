@@ -3,15 +3,22 @@ const initialState = {
   allPokemons: [],
   detail: [],
   types: [],
+  loading: false,
 };
 
 export default function rootReducer(state = initialState, action) {
   switch (action.type) {
+    case "LOADING":
+      return {
+        ...state,
+        loading: true,
+      };
     case "GET_POKEMONS":
       return {
         ...state,
         pokemons: action.payload,
         allPokemons: action.payload,
+        loading: false
       };
     case "GET_POKEMONS_TYPE":
       return {
@@ -22,6 +29,7 @@ export default function rootReducer(state = initialState, action) {
       return {
         ...state,
         detail: action.payload,
+        loading: false
       };
       case "CLEAR_DETAILS_STATE":
         return{

@@ -142,7 +142,7 @@
       color: #f42007;
       font-size: 14px;
   }
-  @media only screen and (max-width: 768px){
+  @media only screen and (max-width: 1000px){
     .form{
         width: 50%;
     }
@@ -162,3 +162,18 @@
           width: 40vw;
       }
   }
+
+  @media only screen and (max-width: 375px){
+    .line{
+        flex-direction: column;
+    }
+    .input{
+        width: 70%;
+        align-self: center;
+    }
+}
+@media only screen and (max-width: 320px){
+   .form{
+       width: fit-content
+   }
+}

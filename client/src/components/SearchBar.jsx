@@ -16,7 +16,7 @@ export default function SearchBar({setLoading}){
     function handleSubmit(e){
         e.preventDefault()
         dispatch(getPokemonName(name))
-        setLoading(true)
+        setLoading(false)
         setName("")
     }
     

@@ -6,7 +6,7 @@ import { getAllPokemons, orderByAttack, filterByType, filterCreated, orderByName
 import Card from "./Card";
 import Paginado from "./Paginado"
 import SearchBar from "./SearchBar";
-import { Loader } from "./Loader";
+import  Loader from "./Loader";
 import styles from './styles/home.module.css'
 import pokemon from '../images/title.png'
 import sadPikachu from "../images/sad.png"
@@ -31,7 +31,7 @@ export default function Home(){
       setCurrentPage(pageNumber);
     };
    
-    const [loading,setLoading] = useState(false)
+    const [loading, setLoading] = useState(false);
     const [selectStrength, setSelectStrength] = useState("")
     const [selectAlpha, setSelectAlpha] = useState("")
     const [selectType, setSelectType] = useState("")
@@ -83,8 +83,10 @@ export default function Home(){
 
     return(
         <div className={styles.main_container}>
+            <Loader/>
+            <div className={styles.create_btn}>
             <Link to= "/pokemons" className={styles.link}><button className={styles.button}>Create your Pokemon</button></Link>
-
+            </div>
             <img className ={styles.pic} src = {pokemon} alt='img not found'/>
             <button className={styles.refresh_btn} onClick={e => {handleClick(e)}}>
                 Get all Pokemon
@@ -138,7 +140,7 @@ export default function Home(){
                         <div className={styles.cards} key= {p.id} >
                             <Link to ={ "/pokemons/" + p.id}>
                             <Card name= {p.name.toUpperCase()}
-                                  sprite = {p.sprite}
+                                  sprite =  {p.sprite}
                                   types={p.types}
                                   createdInDB={p.createdInDB}
                              />

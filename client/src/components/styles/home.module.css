@@ -16,6 +16,12 @@
   width: 380px;
   height: auto;
 }
+.create_btn{
+  display: flex;
+  justify-content: flex-end;
+  align-self: flex-end;
+  margin: 40px 60px 0 0;
+}
 .button {
   display: flex;
   width: fit-content;
@@ -30,6 +36,7 @@
   color: #2c4592;
   text-decoration: none;
   box-shadow: 0 2px 3px 2px rgba(20, 20, 20, 0.4);
+
 }
 .button:hover {
   background-color: #2c4592;
@@ -39,8 +46,6 @@
 }
 .link {
   text-decoration: none;
-  align-self: flex-end;
-  margin: 40px 60px 0 0;
 }
 .refresh_btn {
   font-size: 15px;
@@ -129,7 +134,21 @@
 }
 
 @media only screen and (max-width: 768px){
-  .button{
-    justify-content: center;
+  
+  .create_btn{
+    margin-bottom: 15px;
+    margin-right: auto;
+    margin-left: auto;
+    background: #e5e5e5;
   }
+  .pic{
+    transform: scale(90%);
+  }
+
+}
+@media only screen and (max-width: 375px){
+  .pic{
+    transform: scale(75%);
+  }
+
 }

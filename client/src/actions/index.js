@@ -1,8 +1,14 @@
 import axios from "axios";
 import Swal from 'sweetalert2'
 const baseUrl = "https://pokemon-appp.herokuapp.com"
+
+// const baseUrl = "http://localhost:3001"
+
 export function getAllPokemons() {
   return async function (dispatch) {
+    dispatch({
+      type: "LOADING",
+    });
     try{
       var json = await axios.get(`${baseUrl}/pokemons`, {});
       return dispatch({
@@ -36,6 +42,9 @@ export function getPokemonType() {
 
 export function getPokemonDetail(id) {
   return async function (dispatch) {
+    dispatch({
+      type: "LOADING",
+    });
     try {
       let json = await axios.get(`${baseUrl}/pokemons/${id}`);
       return dispatch({

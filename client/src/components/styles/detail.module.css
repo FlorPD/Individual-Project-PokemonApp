@@ -4,7 +4,7 @@
     align-items: center;
     justify-content: center;
     width: 100%;
-    height:100vh ;
+    height:100% ;
     background-color:  #bcdf7f ;
     background-image: url('../../images/background.jpg');
     background-position: center;
@@ -53,10 +53,11 @@
 }
 
 .button {
-    position: absolute;
-    bottom: 88vh;
-    right: 85vw;
+    position: relative;
     display: flex;
+    justify-content: center;
+    margin-left: auto;
+    margin-right: auto;
     width: fit-content;
     height: fit-content;
     padding: 5px 10px 5px 10px;
@@ -67,8 +68,11 @@
     font-size: 15px;
     font-family: "Kabel Bd", sans-serif;
     color: #e5e5e5;
-    text-decoration: none;
     box-shadow: 0 2px 3px 2px rgba(20, 20, 20, 0.4);
+}
+.link{
+      text-decoration: none;
+
   }
 
   .button:hover {
@@ -87,8 +91,5 @@
     }
     .pic{
         transform:scale(0.9);
-    }
-    .button{
-        right: 42vw;
     }
 }

@@ -30,3 +30,9 @@
     background-color: #eeb913;
     color: black
 }
+@media only screen and (max-width: 768px){
+  .search_input{
+    width: 50%;
+  }
+
+}
