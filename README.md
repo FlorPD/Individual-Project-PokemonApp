@@ -3,6 +3,7 @@
 </p>
 
 # Individual Project - Pokemon App
+Link to [deploy](https://pokemon-app-ivory.vercel.app/)
 
 <p align="left">
   <img height="300" width= auto src="./Page1.jpeg" />
@@ -11,8 +12,6 @@
   <img height="300" width= auto src="./Page4.jpeg" />
 </p>
 
-
-Preview: Link to [demo video](https://youtu.be/ez-3Dd37sO8)
 
 Pokemon-themed SPA (single page application) developed as an individual project for Henry's Bootcamp.
 
